@@ -1,12 +1,11 @@
 package com.cloud.computing.kolokvijum.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Data
@@ -21,4 +20,13 @@ public class Movie {
     private String genre;
     private Long year;
 
+
+    @Transient
+    @Value("${datasource.table-name}")
+    private String tableName;
+
+    @PostLoad
+    public void setTableName() {
+        this.tableName = tableName;
+    }
 }
