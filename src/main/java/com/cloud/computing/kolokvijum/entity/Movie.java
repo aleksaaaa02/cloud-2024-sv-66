@@ -11,22 +11,12 @@ import org.springframework.beans.factory.annotation.Value;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "sv_66_2021")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
     private String genre;
     private Long year;
-
-
-    @Transient
-    @Value("${datasource.table-name}")
-    private String tableName;
-
-    @PostLoad
-    public void setTableName() {
-        this.tableName = tableName;
-    }
 }
